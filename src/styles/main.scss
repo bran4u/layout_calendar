@@ -21,21 +21,26 @@ html {
   display: flex;
   flex-wrap: wrap;
   margin: auto;
-}
 
-.calendar div:nth-child(-n + 31) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-basis: 100px;
-  height: 100px;
-  margin-right: 1px;
-  background-color: #eee;
-  border: 1px solid black;
+  & div:nth-child(-n + 31) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 100px;
+    height: 100px;
+    margin-right: 1px;
+    background-color: #eee;
+    border: 1px solid black;
+  }
+
+  & div:hover {
+    background-color: pink;
+    position: relative;
+    top: -20px;
+  }
 }
 
 @for $i from 1 through 31 {
-
   .calendar div:nth-child(#{$i})::after {
     content: "#{$i}";
   }
@@ -47,16 +52,8 @@ html {
   }
 }
 
-.calendar div:hover {
-  background-color: pink;
-  position: relative;
-  top: -20px;
-}
-
 @each $day, $value in $week {
-  .calendar-#{$day} {
-    > :first-child {
-      margin-left: $value*101px;
-    }
+  .calendar-#{$day} div:first-child {
+    margin-left: $value * 101px;
   }
 }
